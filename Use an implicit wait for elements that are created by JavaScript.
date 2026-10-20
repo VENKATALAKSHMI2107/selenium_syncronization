@@ -1,0 +1,31 @@
+package synchronzation;
+
+import java.time.Duration;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class ass9 {
+	public static void main(String[] args) {
+	WebDriver d=new ChromeDriver();
+	d.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
+	d.manage().window().maximize();
+	d.get("https://www.selenium.dev/selenium/web/dynamic.html");
+	WebElement e=d.findElement(By.id("adder"));
+	long before=System.currentTimeMillis();
+	e.click();
+    WebElement box0 = d.findElement(By.id("box0"));
+    long after=System.currentTimeMillis();
+    System.out.println(after-before);
+    System.out.println(box0.getDomAttribute("class"));
+    e.click();
+    WebElement box1 = d.findElement(By.id("box1"));
+    List<WebElement> el=d.findElements(By.className("redbox"));
+    System.out.println(el.size());
+    d.quit();
+	}
+
+}
