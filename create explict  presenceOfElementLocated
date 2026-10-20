@@ -1,0 +1,27 @@
+package synchronzation;
+
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+public class ass15 {
+	public static void main(String[] args) {
+		WebDriver d=new ChromeDriver();
+		d.manage().window().maximize();
+		d.get("https://www.selenium.dev/selenium/web/dynamic.html");
+		d.findElement(By.id("adder")).click();
+		long before=System.currentTimeMillis();
+		WebDriverWait e=new WebDriverWait(d, Duration.ofSeconds(20));
+	WebElement s=	e.until(ExpectedConditions.presenceOfElementLocated(By.id("box0")));
+		long after=System.currentTimeMillis();
+		System.out.println(s.getCssValue("background-color"));
+		System.out.println(after-before);
+		d.quit();
+	}
+
+}
