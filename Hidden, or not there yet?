@@ -1,0 +1,31 @@
+package synchronzation;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import java.util.List;
+public class ass2 {
+    public static void main(String[] args) throws InterruptedException {
+    WebDriver driver = new ChromeDriver();
+    driver.get("https://the-internet.herokuapp.com/dynamic_loading/1");
+    driver.findElement(By.tagName("button")).click();
+    List<WebElement> elements =
+                driver.findElements(By.id("finish"));
+    System.out.println("Example 1 size: " + elements.size());
+    if (!elements.isEmpty()) {
+            System.out.println("Example 1 displayed: "
+                    + elements.get(0).isDisplayed());
+        }
+      driver.get("https://the-internet.herokuapp.com/dynamic_loading/2");
+      driver.findElement(By.tagName("button")).click();
+      List<WebElement> elements2 =
+                driver.findElements(By.id("finish"));
+      System.out.println("Example 2 size: " + elements2.size());
+      if (!elements2.isEmpty()) {
+            System.out.println("Example 2 displayed: "
+                    + elements2.get(0).isDisplayed());
+        }
+
+        driver.quit();
+    }
+}
