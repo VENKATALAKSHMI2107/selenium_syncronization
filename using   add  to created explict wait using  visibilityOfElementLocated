@@ -1,0 +1,25 @@
+package synchronzation;
+
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+public class ass14 {
+	public static void main(String[] args) {
+		 WebDriver d=new ChromeDriver();
+		 d.manage().window().maximize();
+		 d.get("https://www.selenium.dev/selenium/web/dynamic.html");
+		 d.findElement(By.id("reveal")).click();
+		 WebDriverWait s=new WebDriverWait(d, Duration.ofSeconds(10));
+		WebElement f= s.until(ExpectedConditions.visibilityOfElementLocated(By.id("revealed")));
+		f.sendKeys("synched!.");
+		System.out.println(f.getDomProperty("value"));
+		d.quit();
+	}
+
+}
