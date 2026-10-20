@@ -1,0 +1,42 @@
+package synchronzation;
+
+import java.time.Duration;
+import java.time.Instant;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+public class ass20 {
+    public static void main(String[] args) {
+
+        WebDriver d = new ChromeDriver();
+        d.manage().window().maximize();
+
+        d.get("http://uitestingplayground.com/ajax");
+
+        WebDriverWait e = new WebDriverWait(d, Duration.ofSeconds(20));
+
+        Instant start = Instant.now();
+
+        d.findElement(By.id("ajaxButton")).click();
+
+        e.until(ExpectedConditions.textToBePresentInElementLocated(
+            By.id("content"),
+            "Data loaded with AJAX get request."
+        ));
+
+        WebElement content = d.findElement(By.id("content"));
+
+        System.out.println(content.getText());
+
+        long seconds = Duration.between(start, Instant.now()).toSeconds();
+
+        System.out.println("Seconds passed: " + seconds);
+
+        d.quit();
+    }
+}
