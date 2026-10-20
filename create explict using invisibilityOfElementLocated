@@ -1,0 +1,27 @@
+package synchronzation;
+
+import java.time.Duration;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+public class ass18 {
+	public static void main(String[] args) {
+		WebDriver d=new ChromeDriver();
+		d.manage().window().maximize();
+		d.get("https://the-internet.herokuapp.com/dynamic_controls");
+		d.findElement(By.xpath("//button[text()='Remove']")).click();
+		WebDriverWait e=new WebDriverWait(d, Duration.ofSeconds(20));
+		e.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading")));
+		List<WebElement> elem=d.findElements(By.xpath("//input[@type='checkbox']"));
+		System.out.println("elements after wait:"+elem.size()+"available");
+		System.out.println(d.findElement(By.id("message")).getText());
+		d.quit();
+	}
+
+}
